@@ -31,7 +31,7 @@ Clone the repo:
 ```bash
 git https://github.com/ameenmari/OraanBackendTest.git
 
- cd backendTestOraan-alpha
+ cd OraanTest
 ```
 
 Install the dependencies:
