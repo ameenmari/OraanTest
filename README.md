@@ -29,15 +29,16 @@ A boilerplate/starter RESTful APIs using Node.js, Express, and Mongoose.
 Clone the repo:
 
 ```bash
-git https://github.com/ameenmari/OraanBackendTest.git
+git https://github.com/ameenmari/OraanTest
 
- cd backendTestOraan-alpha
+ cd OraanTest-master
 ```
 
 Install the dependencies:
 
 ```bash
 npm install
+npm install nodemon babel-node
 ```
 
 Set the environment variables:
