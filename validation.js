@@ -1,5 +1,6 @@
 
-import Joi from '@hapi/joi';
+
+const Joi = require('@hapi/joi');
 const signinValidation = (data) => {
     const schema = {
         number: Joi.string().min(10).max(15).required(),

@@ -1,27 +1,33 @@
 
 
-import express from 'express';
-import mongoose from 'mongoose';
-import config from './config';
-import userRoute from './routes/userRoute';
-import instalmentRoute from './routes/instalmentRoute';
+require("dotenv").config();
+import express from "express";
+import bodyparser from "body-parser";
+import mongoose from "mongoose";
+import cors from "cors";
+import api from "./routes/index.";
 
-const mongodbUrl = config.MONGODB_URL;
+
+const app = express();
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use(cors());
+
 mongoose
-    .connect(mongodbUrl, {
+    .connect("mongodb+srv://ameenmari:3s9kMMYHZ2tyBPw3@cluster0.60rwu.gcp.mongodb.net/<newdb>?retryWrites=true&w=majority", {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
-    }).then(res => console.log('db connected...'))
-    .catch((error) => console.log(error.reason));
+    })
+    .then(() => console.log("Database connected!"))
+    .catch((err) => console.error(err));
 
-const app = express();
+app.get("/", (req, res) => {
+    return res.status(200).send("ok");
+});
 
-app.use(express.json());
-app.use('/api/users', userRoute);
-app.use('/api/instalments', instalmentRoute);
+app.use("/api", api);
 
-
-app.listen(config.PORT, () => {
-    console.log('Server started at http://localhost:5000');
+app.listen(5000, () => {
+    console.log("Server Running on port 5000");
 });

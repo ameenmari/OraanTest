@@ -8,10 +8,11 @@ const instalmentSchema = new mongoose.Schema({
     paymentDate: { type: Date, required: true },
     instalmentDate: { type: Date, required: true },
     instalmentAmount: { type: String, required: true },
-    paymentMethod: { type: String, required: true, max: 30 },
+    paymentMethod: { type: String, required: true },
 
 });
 
-const instalmentModel = mongoose.model('instalments', instalmentSchema);
-export default instalmentModel;
+
+
+module.exports = mongoose.model("instalments", instalmentSchema);
 

@@ -13,6 +13,7 @@ A boilerplate/starter RESTful APIs using Node.js, Express, and Mongoose.
 - [API Documentation](#api-documentation)
 - [Error Handling](#error-handling)
 - [Validation](#validation)
+ -[Token base Authentication](#token-base-auth)
 - [Postman-tests](#postman-test)
 ## Features
 
@@ -117,6 +118,24 @@ router.post('/signin', async (req, res) => {
 ```
 
 
+
+#token-base-Authentication
+### JsonWebToken
+
+
+
+JsonWebToken help to create tokens to authenticate users [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken).
+
+Create accesstoken and refreshtoekn when user login or signup
+
+`POST api/auth/refresh_token` - generate accessToken by providing refresh token in body\
+
+```json
+{
+"refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmNmUwNDEzYTI1NmViMGE3ODNkN2E1YiJ9LCJpYXQiOjE2MDEwNDU1MjMsImV4cCI6MTYwMTEzMTkyM30.naHqeMsSeYF6cRLYtjfr_XgH_O_AKEVtcxc3XUkWz3U"
+}```
+
+
 # postman-test
 
 ### Register a user
@@ -212,6 +231,31 @@ Valid request will return a JSON string **response** like this sample:
     "total": 9000
 }
 ```
+
+
+### Get accessToken by giving refresh token in body 
+
+**POSt** `http://localhost:5000/api/auth/refresh_token`
+
+Body of **request** must be JSON. Sample:
+
+```json
+{
+
+"refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmNmUwNDEzYTI1NmViMGE3ODNkN2E1YiJ9LCJpYXQiOjE2MDEwNDU1MjMsImV4cCI6MTYwMTEzMTkyM30.naHqeMsSeYF6cRLYtjfr_XgH_O_AKEVtcxc3XUkWz3U"
+}
+
+```
+
+Valid request will return a JSON string **response** like this sample:
+
+```json
+{
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXIiOnsiX2lkIjoiNWY2ZTA0MTNhMjU2ZWIwYTc4M2Q3YTViIn0sImlhdCI6MTYwMTA0NTUyMywiZXhwIjoxNjAxMTMxOTIzfSwiaWF0IjoxNjAxMDQ4MjI1LCJleHAiOjE2MDEwNDg4MjV9.zybcRN02N587BAQWYHmHE6WU4Mosc-kxRaRYXnjwJKw"
+}
+```
+
+
 
 
 
